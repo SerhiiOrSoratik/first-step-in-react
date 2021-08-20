@@ -1,0 +1,19 @@
+body {
+    margin: 0;
+    background-color: gainsboro;
+    font-family: "Courier New", Courier, monospace;
+}
+
+.main {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .todo {
+    width: 700px;
+    height: 100%;
+    background-color: whitesmoke;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
