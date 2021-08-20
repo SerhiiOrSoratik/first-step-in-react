@@ -24,6 +24,11 @@ function App() {
     addTask([...taskList, newTask]);
   };
 
+  const deleteTask = (id) => {
+    addTask([...taskList.slice(0, id), ...taskList.slice(id, ...taskList.length)]);
+  }
+
+
   return (
     <div className="main">
       <div className="todo">
