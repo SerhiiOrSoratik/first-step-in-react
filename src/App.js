@@ -7,6 +7,8 @@ import Todo from "./components/Todo";
 let idCount = 1;
 
 function App() {
+  const [taskList, changeTasks] = useState([]);
+
   const createTask = (data) => {
     return {
       id: idCount++,
@@ -17,30 +19,32 @@ function App() {
     };
   };
 
-  const [taskList, changeTasks] = useState([]);
-
   const addNewTask = (task) => {
     const newTask = createTask(task);
     changeTasks([...taskList, newTask]);
   };
 
   const deleteTask = (id) => {
-    const newTaskList = taskList.filter(t => t.id != id);
+    const newTaskList = taskList.filter((t) => t.id !== id);
     changeTasks(newTaskList);
-  }
+  };
 
   const changeConditionTask = (id, done) => {
     const newTaskList = taskList.slice();
     newTaskList[id - 1].done = !done;
     changeTasks(newTaskList);
-  }
+  };
 
   return (
     <div className="main">
       <div className="todo">
         <Header />
         <TaskForm onSubmit={addNewTask} />
-        <Todo tasks={taskList} deleteTask={deleteTask} changeConditionTask={changeConditionTask}  />
+        <Todo
+          tasks={taskList}
+          deleteTask={deleteTask}
+          changeConditionTask={changeConditionTask}
+        />
       </div>
     </div>
   );

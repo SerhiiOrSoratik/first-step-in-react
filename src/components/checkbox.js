@@ -1,18 +1,11 @@
-let state = {};
-
-// const onChange = (event) => {
-//     setState
-// }
-
-
-const Checkbox = ({task, changeConditionTask}) => {
+const Checkbox = ({ task, changeConditionTask }) => {
   const isDone = task.done;
 
   if (isDone) {
     return (
       <input
         type="checkbox"
-         onChange={() => changeConditionTask(task.id, isDone)}
+        onChange={() => changeConditionTask(task.id, isDone)}
         checked
       />
     );
