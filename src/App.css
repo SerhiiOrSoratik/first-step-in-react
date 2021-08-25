@@ -1,5 +1,6 @@
 body {
     margin: 0;
+    padding: 0;
     background-color: gainsboro;
     font-family: "Courier New", Courier, monospace;
 }
@@ -8,12 +9,18 @@ body {
     display: flex;
     justify-content: center;
   }
+
+.main-content {
+  display: flex;
+  justify-content: space-between;
+
+}
   
   .todo {
-    width: 700px;
+    width: 70%;
     height: 100%;
     background-color: whitesmoke;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     flex-wrap: wrap;
   }

@@ -12,13 +12,20 @@ const checkDate = (date, done) => {
       return "date";
     }
   }
+  
   else {
     return "";
   }
 }
 
-const Task = ({tasks, deleteTask, changeConditionTask}) => {
+const getListTitle = (id, lists) => {
+  console.log(id)
+  if (id === 'other') return 'other';
+  const currentList = lists.find(l => l.id == id);
+  return currentList.title;
+}
 
+const Task = ({tasks, deleteTask, changeConditionTask, lists}) => {
   return tasks.map((task) => {
     return (
       <div id={task.id} className="task" key={`task${task.id}`}>
@@ -30,8 +37,8 @@ const Task = ({tasks, deleteTask, changeConditionTask}) => {
           <h3 className={checkDate(task.due_date, task.done)}> {task.due_date} </h3>
           <p className={"deleteTaskButton"} onClick={() => deleteTask(task.id)}>✖</p>
         </div>
-
         <p className="description">{task.description}</p>
+        <a>{getListTitle(task.listId, lists)}</a>
       </div>
     );
   });

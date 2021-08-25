@@ -1,13 +1,18 @@
 import { Component } from "react";
 import "./Task-form.css";
 class TaskForm extends Component {
-  state = {};
+  state = {listId: 'other'};
+  lists;
+  constructor(props) {
+    super();
+    this.lists = props.lists;
+  }
 
   onSubmitHandler = (event) => {
     event.preventDefault();
     if (this.state && this.state.title) {
       this.props.onSubmit(this.state);
-      this.setState({ title: "", due_date: "", description: "" });
+      this.setState({ title: "", due_date: "", description: "", listId: 'other'});
     } else alert("Enter title pls");
   };
 
@@ -28,6 +33,13 @@ class TaskForm extends Component {
       description: event.target.value,
     });
   };
+
+  setListId = (event) => {
+    console.log(event.target.value)
+    this.setState({
+      listId: event.target.value
+    })
+  }
 
 
   render() {
@@ -57,6 +69,15 @@ class TaskForm extends Component {
               onChange={this.setDescription}
               value={this.state.description}
             />
+            <select onChange={this.setListId}>
+              <option selected value='other'>other</option>
+              {this.lists.map(l => {
+                return (
+                  <option value={l.id} key={`listId${l.id}`}>{l.title}</option>
+                )
+              })}
+            </select>
+
           </div>
           <button type="submit">Add</button>
         </form>

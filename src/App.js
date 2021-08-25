@@ -3,6 +3,8 @@ import "./App.css";
 import Header from "./components/Header";
 import TaskForm from "./components/Task-form";
 import Todo from "./components/Todo";
+import { BrowserRouter as Router, Link } from "react-router-dom";
+import NavBar from "./components/navBar";
 
 let idCount = 1;
 
@@ -16,6 +18,7 @@ function App() {
       done: false,
       due_date: data.due_date || "",
       description: data.description || "",
+      listId: data.listId || ""
     };
   };
 
@@ -35,16 +38,40 @@ function App() {
     changeTasks(newTaskList);
   };
 
+  const lists = [
+    {
+      id: 1,
+      title: "All",
+    },
+    {
+      id: 2,
+      title: "Other",
+    },
+    {
+      id: 3,
+      title: "list1",
+    },
+    {
+      id: 4,
+      title: "list2",
+    },
+
+  ];
+
   return (
     <div className="main">
       <div className="todo">
         <Header />
-        <TaskForm onSubmit={addNewTask} />
-        <Todo
-          tasks={taskList}
-          deleteTask={deleteTask}
-          changeConditionTask={changeConditionTask}
-        />
+        <div className="main-content">
+          <NavBar lists={lists} />
+            <Todo
+              tasks={taskList}
+              deleteTask={deleteTask}
+              changeConditionTask={changeConditionTask}
+              lists={lists}
+            />
+          <TaskForm onSubmit={addNewTask} lists={lists.slice(2)}/>
+        </div>
       </div>
     </div>
   );
