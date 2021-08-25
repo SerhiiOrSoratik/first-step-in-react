@@ -1,0 +1,23 @@
+.task {
+  border: 1px solid black;
+  width: 500px;
+  padding-left: 15px;
+  padding-bottom: 15px;
+  margin: 10px 0 10px 0;
+}
+
+.info {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.date {
+  padding-left: 10px;
+}
+
+.description {
+  margin: 0;
+  padding-left: 5px;
+  color: gray;
+}

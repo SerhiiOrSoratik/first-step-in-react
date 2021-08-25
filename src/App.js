@@ -17,24 +17,30 @@ function App() {
     };
   };
 
-  const [taskList, addTask] = useState([]);
+  const [taskList, changeTasks] = useState([]);
 
   const addNewTask = (task) => {
     const newTask = createTask(task);
-    addTask([...taskList, newTask]);
+    changeTasks([...taskList, newTask]);
   };
 
   const deleteTask = (id) => {
-    addTask([...taskList.slice(0, id), ...taskList.slice(id, ...taskList.length)]);
+    const newTaskList = taskList.filter(t => t.id != id);
+    changeTasks(newTaskList);
   }
 
+  const changeConditionTask = (id, done) => {
+    const newTaskList = taskList.slice();
+    newTaskList[id - 1].done = !done;
+    changeTasks(newTaskList);
+  }
 
   return (
     <div className="main">
       <div className="todo">
         <Header />
         <TaskForm onSubmit={addNewTask} />
-        <Todo tasks={taskList} />
+        <Todo tasks={taskList} deleteTask={deleteTask} changeConditionTask={changeConditionTask}  />
       </div>
     </div>
   );

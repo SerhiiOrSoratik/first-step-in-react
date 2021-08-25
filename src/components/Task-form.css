@@ -1,0 +1,19 @@
+
+form {
+    margin-top: 10px;
+    width: 100%;
+    border: 1px solid black;
+    text-align: center;
+  }
+  
+  form button {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .input-flex {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
