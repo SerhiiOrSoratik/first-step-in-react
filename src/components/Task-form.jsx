@@ -70,7 +70,7 @@ class TaskForm extends Component {
               value={this.state.description}
             />
             <select onChange={this.setListId}>
-              <option selected value='other'>other</option>
+              <option defaultValue='other'>other</option>
               {this.lists.map(l => {
                 return (
                   <option value={l.id} key={`listId${l.id}`}>{l.title}</option>

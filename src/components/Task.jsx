@@ -12,7 +12,7 @@ const checkDate = (date, done) => {
       return "date";
     }
   }
-  
+
   else {
     return "";
   }
@@ -21,7 +21,7 @@ const checkDate = (date, done) => {
 const getListTitle = (id, lists) => {
   console.log(id)
   if (id === 'other') return 'other';
-  const currentList = lists.find(l => l.id == id);
+  const currentList = lists.find(l => l.id === id);
   return currentList.title;
 }
 

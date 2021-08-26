@@ -3,8 +3,9 @@ import "./App.css";
 import Header from "./components/Header";
 import TaskForm from "./components/Task-form";
 import Todo from "./components/Todo";
-import { BrowserRouter as Router, Link } from "react-router-dom";
 import NavBar from "./components/navBar";
+import TodayTask from "./components/today-task";
+import { BrowserRouter, Route } from "react-router-dom";
 
 let idCount = 1;
 
@@ -18,7 +19,7 @@ function App() {
       done: false,
       due_date: data.due_date || "",
       description: data.description || "",
-      listId: data.listId || ""
+      listId: data.listId || "",
     };
   };
 
@@ -55,25 +56,33 @@ function App() {
       id: 4,
       title: "list2",
     },
-
   ];
 
   return (
+    <BrowserRouter>
     <div className="main">
       <div className="todo">
         <Header />
         <div className="main-content">
           <NavBar lists={lists} />
-            <Todo
-              tasks={taskList}
-              deleteTask={deleteTask}
-              changeConditionTask={changeConditionTask}
-              lists={lists}
-            />
-          <TaskForm onSubmit={addNewTask} lists={lists.slice(2)}/>
+          <a href='/aaa'>aaaaaaa</a>
+            <Route  path='/aaa'>
+              <Todo
+                tasks={taskList}
+                deleteTask={deleteTask}
+                changeConditionTask={changeConditionTask}
+                lists={lists}
+              />
+            </Route>
+            <Route path='/' >
+              <TodayTask />
+            </Route>
+
+          <TaskForm onSubmit={addNewTask} lists={lists.slice(2)} />
         </div>
       </div>
     </div>
+    </BrowserRouter>
   );
 }
 
