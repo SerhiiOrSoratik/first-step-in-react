@@ -7,26 +7,13 @@ import NavBar from "./components/Dashboard/dashboard";
 import TodayTask from "./components/TodayTaskPage/today-task";
 import { BrowserRouter, Route, Redirect } from "react-router-dom";
 
-let idCount = 1;
+
 
 function App() {
   const [taskList, changeTasks] = useState([]);
 
-  const createTask = (data) => {
-    return {
-      id: idCount++,
-      title: data.title,
-      done: false,
-      due_date: data.due_date || "",
-      description: data.description || "",
-      listId: data.listId || "",
-    };
-  };
 
-  const addNewTask = (task) => {
-    const newTask = createTask(task);
-    changeTasks([...taskList, newTask]);
-  };
+
 
   const deleteTask = (id) => {
     const newTaskList = taskList.filter((t) => t.id !== id);
@@ -57,6 +44,7 @@ function App() {
     toogleTaskType(isDone)
     console.log(isOnlyUncompletedTasks)
   }
+
 
   return (
     <>
@@ -90,7 +78,7 @@ function App() {
               </div>
 
 
-              <TaskForm onSubmit={addNewTask} lists={lists} />
+              <TaskForm changeTasks={changeTasks} lists={lists} taskList={taskList} />
             </div>
           </div>
         </div>
