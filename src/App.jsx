@@ -1,10 +1,10 @@
 import { useState } from "react";
 import "./App.css";
 import Header from "./components/Header";
-import TaskForm from "./components/Task-form";
-import Todo from "./components/Todo";
-import NavBar from "./components/navBar";
-import TodayTask from "./components/today-task";
+import TaskForm from "./components/Form-component/Task-form"
+import Todo from "./components/Task-component/Todo";
+import NavBar from "./components/Dashboard/dashboard";
+import TodayTask from "./components/TodayTaskPage/today-task";
 import { BrowserRouter, Route } from "react-router-dom";
 
 let idCount = 1;
@@ -59,14 +59,16 @@ function App() {
   ];
 
   return (
+    <>
     <BrowserRouter>
     <div className="main">
       <div className="todo">
         <Header />
         <div className="main-content">
           <NavBar lists={lists} />
-          <a href='/aaa'>aaaaaaa</a>
-            <Route  path='/aaa'>
+          {/* <a href='/aaa'>aaaaaaa</a> */}
+          <div>
+          <Route  path='/aaa'>
               <Todo
                 tasks={taskList}
                 deleteTask={deleteTask}
@@ -74,15 +76,18 @@ function App() {
                 lists={lists}
               />
             </Route>
-            <Route path='/' >
+            {/* <Route path='/1'> */}
               <TodayTask />
-            </Route>
+            {/* </Route> */}
+          </div>
+            
 
           <TaskForm onSubmit={addNewTask} lists={lists.slice(2)} />
         </div>
       </div>
     </div>
     </BrowserRouter>
+    </>
   );
 }
 

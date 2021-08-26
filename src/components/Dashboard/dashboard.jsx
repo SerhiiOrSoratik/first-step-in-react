@@ -1,5 +1,5 @@
 import List from "./list"
-import './navbar.css'
+import './dashboard.css'
 const NavBar = ({lists}) => {
     return (
         <div className="sidebar">
