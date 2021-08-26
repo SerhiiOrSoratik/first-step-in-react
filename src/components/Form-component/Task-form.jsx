@@ -1,7 +1,9 @@
 import { Component } from "react";
+import { useParams } from "react-router-dom";
 import "./Task-form.css";
+
 class TaskForm extends Component {
-  state = {listId: '2'};
+  state = {listId: '1'};
   lists;
   constructor(props) {
     super();
@@ -43,6 +45,7 @@ class TaskForm extends Component {
 
 
   render() {
+
     return (
       <div>
         <form id="task_form" onSubmit={this.onSubmitHandler}>
@@ -70,12 +73,13 @@ class TaskForm extends Component {
               value={this.state.description}
             />
             <select onChange={this.setListId}>
-              <option defaultValue='other'>other</option>
-              {this.lists.map(l => {
+              {
+                this.lists.map(l => {
                 return (
                   <option value={l.id} key={`listId${l.id}`}>{l.title}</option>
                 )
-              })}
+              })
+            }
             </select>
 
           </div>

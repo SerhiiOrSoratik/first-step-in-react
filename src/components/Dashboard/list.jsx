@@ -8,7 +8,7 @@ const List = (props) => {
             const url = `/lists/${list.id}`
             return (
                 <div key={`list${list.id}`}>
-                    <NavLink className="link" to={url}>{list.title}</NavLink>
+                    <NavLink  to={url}>{list.title}</NavLink>
                 </div>
             )
     

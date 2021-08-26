@@ -1,3 +1,4 @@
+import { NavLink, useParams } from "react-router-dom";
 import Checkbox from "./checkbox";
 import "./task.css";
 
@@ -7,7 +8,7 @@ const checkDate = (date, done) => {
     let nowDay = new Date();
     nowDay = new Date(nowDay.getFullYear(), nowDay.getMonth(), nowDay.getDate(), 0, 0, 0, 0);
     if (nowDay >= date && done === false) {
-      return "overdue-task";
+      return "overdue-date";
     } else if (nowDay < date || done === true) {
       return "date";
     }
@@ -18,13 +19,14 @@ const checkDate = (date, done) => {
 }
 
 const getListTitle = (id, lists) => {
-  if (id === 'other') return 'other';
   const currentList = lists.find(l => l.id == id);
   return currentList.title;
 }
 
 const Task = ({tasks, deleteTask, changeConditionTask, lists}) => {
+const listId = useParams().id
   return tasks.map((task) => {
+    const url = `/lists/${task.listId}`
     return (
       <div id={task.id} className="task" key={`task${task.id}`}>
         <div className="info">
@@ -36,7 +38,7 @@ const Task = ({tasks, deleteTask, changeConditionTask, lists}) => {
           <p className={"deleteTaskButton"} onClick={() => deleteTask(task.id)}>✖</p>
         </div>
         <p className="description">{task.description}</p>
-        <a>{getListTitle(task.listId, lists)}</a>
+        {!listId ? <NavLink to={url}>{getListTitle(task.listId, lists)}</NavLink> : ''}
       </div>
     );
   });

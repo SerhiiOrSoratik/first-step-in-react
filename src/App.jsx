@@ -42,21 +42,21 @@ function App() {
   const lists = [
     {
       id: 1,
-      title: "All",
-    },
-    {
-      id: 2,
-      title: "Other",
-    },
-    {
-      id: 3,
       title: "list1",
     },
     {
-      id: 4,
+      id: 2,
       title: "list2",
     },
   ];
+
+  const [isOnlyUncompletedTasks, toogleTaskType] = useState(false);
+
+  const taskTypeToogle = () => {
+    const isDone = !isOnlyUncompletedTasks;
+    toogleTaskType(isDone)
+    console.log(isOnlyUncompletedTasks)
+  }
 
   return (
     <>
@@ -64,6 +64,7 @@ function App() {
         <div className="main">
           <div className="todo">
             <Header />
+            <button onClick={() => taskTypeToogle()}>Click me tenderly</button>
             <div className="main-content">
               <NavBar lists={lists} />
               <div>
@@ -76,6 +77,7 @@ function App() {
                     deleteTask={deleteTask}
                     changeConditionTask={changeConditionTask}
                     lists={lists}
+                    isOnlyUncompletedTasks={isOnlyUncompletedTasks}
                   />
                 </Route>
                 <Route path='/today' exact>
@@ -88,7 +90,7 @@ function App() {
               </div>
 
 
-              <TaskForm onSubmit={addNewTask} lists={lists.slice(2)} />
+              <TaskForm onSubmit={addNewTask} lists={lists} />
             </div>
           </div>
         </div>
