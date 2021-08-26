@@ -23,14 +23,14 @@ const getListTitle = (id, lists) => {
   return currentList.title;
 }
 
-const Task = ({tasks, deleteTask, changeConditionTask, lists}) => {
-const listId = useParams().id
+const Task = ({ tasks, deleteTask, changeConditionTask, lists }) => {
+  const listId = useParams().id
   return tasks.map((task) => {
     const url = `/lists/${task.listId}`
     return (
       <div id={task.id} className="task" key={`task${task.id}`}>
         <div className="info">
-          <Checkbox task={task} changeConditionTask={changeConditionTask}/>
+          <Checkbox task={task} changeConditionTask={changeConditionTask} />
           <h3 className={task.done ? "doneTitle" : ""}>
             {task.id}. {task.title}
           </h3>

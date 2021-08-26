@@ -10,9 +10,9 @@ const Todo = ({ tasks, deleteTask, changeConditionTask, lists, isOnlyUncompleted
   }
 
   return (
-    <div className="todo-list"> 
-      <h1>{lists[listId - 1].title}</h1>
-      <div>
+    <div className="todo-list-page">
+      <h1 className="caption">{lists[listId - 1].title}</h1>
+      <div className="todo-list">
         <Task tasks={tasks} deleteTask={deleteTask} changeConditionTask={changeConditionTask} lists={lists} />
       </div>
     </div>

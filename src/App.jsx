@@ -8,12 +8,8 @@ import TodayTask from "./components/TodayTaskPage/today-task";
 import { BrowserRouter, Route, Redirect } from "react-router-dom";
 
 
-
 function App() {
   const [taskList, changeTasks] = useState([]);
-
-
-
 
   const deleteTask = (id) => {
     const newTaskList = taskList.filter((t) => t.id !== id);
@@ -39,11 +35,6 @@ function App() {
 
   const [isOnlyUncompletedTasks, toogleTaskType] = useState(false);
 
-  const taskTypeToogle = () => {
-    const isDone = !isOnlyUncompletedTasks;
-    toogleTaskType(isDone)
-    console.log(isOnlyUncompletedTasks)
-  }
 
 
   return (
@@ -52,32 +43,27 @@ function App() {
         <div className="main">
           <div className="todo">
             <Header />
-            <button onClick={() => taskTypeToogle()}>Click me tenderly</button>
             <div className="main-content">
-              <NavBar lists={lists} />
-              <div>
-                <Route path='/' exact>
-                  <Redirect to={{ pathname: '/today' }}></Redirect>
-                </Route>
-                <Route path='/lists/:id' exact>
-                  <Todo
-                    tasks={taskList}
-                    deleteTask={deleteTask}
-                    changeConditionTask={changeConditionTask}
-                    lists={lists}
-                    isOnlyUncompletedTasks={isOnlyUncompletedTasks}
-                  />
-                </Route>
-                <Route path='/today' exact>
-                  <TodayTask
-                    tasks={taskList}
-                    deleteTask={deleteTask}
-                    changeConditionTask={changeConditionTask}
-                    lists={lists} />
-                </Route>
-              </div>
-
-
+              <NavBar lists={lists} toogleTaskType={toogleTaskType} isOnlyUncompletedTasks={isOnlyUncompletedTasks} />
+              <Route path='/' exact>
+                <Redirect to={{ pathname: '/today' }}></Redirect>
+              </Route>
+              <Route path='/lists/:id' exact>
+                <Todo
+                  tasks={taskList}
+                  deleteTask={deleteTask}
+                  changeConditionTask={changeConditionTask}
+                  lists={lists}
+                  isOnlyUncompletedTasks={isOnlyUncompletedTasks}
+                />
+              </Route>
+              <Route path='/today' exact>
+                <TodayTask
+                  tasks={taskList}
+                  deleteTask={deleteTask}
+                  changeConditionTask={changeConditionTask}
+                  lists={lists} />
+              </Route>
               <TaskForm changeTasks={changeTasks} lists={lists} taskList={taskList} />
             </div>
           </div>

@@ -1,18 +1,25 @@
+.form-component {
+  width: 20%;
+}
 
 form {
-    margin-top: 10px;
-    width: auto;
-    text-align: center;
-  }
-  
-  form button {
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-  
-  .input-flex {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
+  width: 100%;
+  margin-top: 10px;
+  text-align: center;
+}
+
+form button {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.input-flex {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.form-input {
+  width: 80%;
+}

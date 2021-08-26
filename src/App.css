@@ -1,26 +1,18 @@
 body {
-    margin: 0;
-    padding: 0;
-    background-color: gainsboro;
-    font-family: "Courier New", Courier, monospace;
+  margin: 0;
+  padding: 0;
+  background-color: gainsboro;
+  font-family: "Courier New", Courier, monospace;
 }
 
 .main {
-    display: flex;
-    justify-content: center;
-  }
+  display: flex;
+  justify-content: center;
+}
 
 .main-content {
+  height: 100%;
+  background-color: whitesmoke;
   display: flex;
   justify-content: space-between;
-
 }
-  
-  .todo {
-    width: 70%;
-    height: 100%;
-    background-color: whitesmoke;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-  }
