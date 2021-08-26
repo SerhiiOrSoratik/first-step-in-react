@@ -1,4 +1,5 @@
 
+import { useHistory, useParams } from "react-router-dom";
 import "./Task-form.css";
 
 let idCount = 1;
@@ -30,6 +31,8 @@ const TaskForm = ({ lists, changeTasks, taskList }) => {
       form.reset();
     }
   };
+
+  const listId = useHistory().location.pathname.slice(-1)
 
   return (
     <div className="form-component">
