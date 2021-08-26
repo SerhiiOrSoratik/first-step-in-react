@@ -2,10 +2,10 @@ import { useState } from "react";
 import "./App.css";
 import Header from "./components/Header";
 import TaskForm from "./components/Form-component/Task-form"
-import Todo from "./components/Task-component/Todo";
+import Todo from "./components/TodoListPage/Todo";
 import NavBar from "./components/Dashboard/dashboard";
 import TodayTask from "./components/TodayTaskPage/today-task";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Redirect } from "react-router-dom";
 
 let idCount = 1;
 
@@ -60,33 +60,39 @@ function App() {
 
   return (
     <>
-    <BrowserRouter>
-    <div className="main">
-      <div className="todo">
-        <Header />
-        <div className="main-content">
-          <NavBar lists={lists} />
-          {/* <a href='/aaa'>aaaaaaa</a> */}
-          <div>
-          <Route  path='/aaa'>
-              <Todo
-                tasks={taskList}
-                deleteTask={deleteTask}
-                changeConditionTask={changeConditionTask}
-                lists={lists}
-              />
-            </Route>
-            {/* <Route path='/1'> */}
-              <TodayTask />
-            {/* </Route> */}
-          </div>
-            
+      <BrowserRouter>
+        <div className="main">
+          <div className="todo">
+            <Header />
+            <div className="main-content">
+              <NavBar lists={lists} />
+              <div>
+                <Route path='/' exact>
+                  <Redirect to={{ pathname: '/today' }}></Redirect>
+                </Route>
+                <Route path='/lists/:id' exact>
+                  <Todo
+                    tasks={taskList}
+                    deleteTask={deleteTask}
+                    changeConditionTask={changeConditionTask}
+                    lists={lists}
+                  />
+                </Route>
+                <Route path='/today' exact>
+                  <TodayTask
+                    tasks={taskList}
+                    deleteTask={deleteTask}
+                    changeConditionTask={changeConditionTask}
+                    lists={lists} />
+                </Route>
+              </div>
 
-          <TaskForm onSubmit={addNewTask} lists={lists.slice(2)} />
+
+              <TaskForm onSubmit={addNewTask} lists={lists.slice(2)} />
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-    </BrowserRouter>
+      </BrowserRouter>
     </>
   );
 }

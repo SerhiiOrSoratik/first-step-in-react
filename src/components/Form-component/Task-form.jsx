@@ -1,7 +1,7 @@
 import { Component } from "react";
 import "./Task-form.css";
 class TaskForm extends Component {
-  state = {listId: 'other'};
+  state = {listId: '2'};
   lists;
   constructor(props) {
     super();
@@ -12,7 +12,7 @@ class TaskForm extends Component {
     event.preventDefault();
     if (this.state && this.state.title) {
       this.props.onSubmit(this.state);
-      this.setState({ title: "", due_date: "", description: "", listId: 'other'});
+      this.setState({ title: "", due_date: "", description: ""});
     } else alert("Enter title pls");
   };
 
