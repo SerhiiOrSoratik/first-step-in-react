@@ -1,9 +1,9 @@
-import List from "./list"
+import DashboardList from './dashboard-list';
 import './dashboard.css'
 import { NavLink, useLocation } from "react-router-dom";
 import TaskTypeToogle from "./task-type-toogle";
 
-const NavBar = ({ lists, toogleTaskType, isOnlyUncompletedTasks }) => {
+const Dashboard = ({ lists, toogleTaskType, isOnlyUncompletedTasks }) => {
 
 
     let pathname = useLocation().pathname.split('/');
@@ -14,9 +14,9 @@ const NavBar = ({ lists, toogleTaskType, isOnlyUncompletedTasks }) => {
         <div className="sidebar">
             <TaskTypeToogle toogleTaskType={toogleTaskType} listId={listId} isOnlyUncompletedTasks={isOnlyUncompletedTasks}/>
             <NavLink className="link" to='/today'>Today</NavLink>
-            <List lists={lists} />
+            <DashboardList lists={lists} />
         </div>
     )
 }
 
-export default NavBar;
+export default Dashboard;

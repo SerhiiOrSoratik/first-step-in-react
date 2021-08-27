@@ -1,5 +1,5 @@
 import { NavLink, useParams } from "react-router-dom";
-import Checkbox from "./checkbox";
+import Checkbox from "./task-checkbox";
 import "./task.css";
 
 const checkDate = (date, done) => {

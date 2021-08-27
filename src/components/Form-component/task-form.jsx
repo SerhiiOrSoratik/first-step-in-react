@@ -1,7 +1,7 @@
 
 import { useLocation } from "react-router-dom";
-import FormSelect from "./select";
-import "./Task-form.css";
+import FormSelect from "./form-select";
+import "./task-form.css";
 
 let idCount = 1;
 

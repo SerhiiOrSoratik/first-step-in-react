@@ -1,9 +1,9 @@
 import { useState } from "react";
 import "./App.css";
-import Header from "./components/Header";
-import TaskForm from "./components/Form-component/Task-form"
-import Todo from "./components/TodoListPage/Todo";
-import NavBar from "./components/Dashboard/dashboard";
+import Header from "./components/header";
+import TaskForm from "./components/Form-component/task-form";
+import Todo from "./components/TodoListPage/todo-list-page";
+import Dashboard from "./components/Dashboard/dashboard";
 import TodayTask from "./components/TodayTaskPage/today-task";
 import { BrowserRouter, Route, Redirect } from "react-router-dom";
 
@@ -16,8 +16,7 @@ function App() {
     changeTasks(newTaskList);
   };
 
-  const changeConditionTask = (id, done, parentId) => {
-
+  const changeConditionTask = (id, done) => {
     const newTaskList = taskList.slice();
     newTaskList[newTaskList.findIndex(t => t.id == id)].done = !done;
     changeTasks(newTaskList);
@@ -43,7 +42,7 @@ function App() {
           <div className="todo">
             <Header />
             <div className="main-content">
-              <NavBar lists={lists} toogleTaskType={toogleTaskType} isOnlyUncompletedTasks={isOnlyUncompletedTasks} />
+              <Dashboard lists={lists} toogleTaskType={toogleTaskType} isOnlyUncompletedTasks={isOnlyUncompletedTasks} />
               <Route path='/' exact>
                 <Redirect to={{ pathname: '/today' }}></Redirect>
               </Route>

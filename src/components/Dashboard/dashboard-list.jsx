@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import './dashboard.css'
 
-const List = (props) => {
+const DashboardList = (props) => {
     const { lists } = props;
     return (
         lists.map((list) => {
@@ -17,4 +17,4 @@ const List = (props) => {
 
 }
 
-export default List;
+export default DashboardList;

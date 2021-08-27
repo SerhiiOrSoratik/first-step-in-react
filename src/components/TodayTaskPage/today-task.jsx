@@ -1,5 +1,4 @@
-import Task from "../Task-component/Task";
-import "./today-task-page.css";
+import Task from "../Task-component/task";
 const selectTodayTask = (tasks) => {
   const nowDay = new Date()
   const endThisDay = new Date(nowDay.getFullYear(), nowDay.getMonth(), nowDay.getDate(), 23, 59, 59, 59);

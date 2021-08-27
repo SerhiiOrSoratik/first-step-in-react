@@ -26,7 +26,7 @@ const Checkbox = ({ task, changeConditionTask }) => {
   //   <input
   //     type="checkbox"
   //     onChange={() => changeConditionTask(task.id, isDone)}
-  //     {isChecked(isDone)}
+  //     ...{isDone ? 'checked' : null}
   //   />
   // );
 

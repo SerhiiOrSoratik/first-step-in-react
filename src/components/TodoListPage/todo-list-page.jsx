@@ -1,5 +1,4 @@
-import "./todo.css";
-import Task from "../Task-component/Task";
+import Task from "../Task-component/task";
 import { useParams } from "react-router-dom";
 
 const Todo = ({ tasks, deleteTask, changeConditionTask, lists, isOnlyUncompletedTasks }) => {
