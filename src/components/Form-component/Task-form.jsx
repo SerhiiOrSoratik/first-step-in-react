@@ -1,5 +1,6 @@
 
-import { useHistory, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import FormSelect from "./select";
 import "./Task-form.css";
 
 let idCount = 1;
@@ -26,13 +27,18 @@ const TaskForm = ({ lists, changeTasks, taskList }) => {
     event.preventDefault();
     const newForm = new FormData(form);
     const data = Object.fromEntries(newForm.entries());
+    if (listId) {
+      data.listId = listId;
+    }
     if (data.title) {
       addNewTask(data, taskList, changeTasks);
       form.reset();
     }
   };
 
-  const listId = useHistory().location.pathname.slice(-1)
+  let pathname = useLocation().pathname.split('/');
+  const findIndex = pathname.indexOf('lists');
+  let listId = pathname.slice(findIndex + 1, findIndex + 2).join()
 
   return (
     <div className="form-component">
@@ -57,16 +63,7 @@ const TaskForm = ({ lists, changeTasks, taskList }) => {
             placeholder="description"
             className="form-input"
           />
-          <select name="listId"
-            className="form-input">
-            {
-              lists.map(l => {
-                return (
-                  <option value={l.id} key={`listId${l.id}`}>{l.title}</option>
-                )
-              })
-            }
-          </select>
+          <FormSelect lists={lists} listId={listId}/>
 
         </div>
         <button type="submit">Add</button>

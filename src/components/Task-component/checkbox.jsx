@@ -17,6 +17,19 @@ const Checkbox = ({ task, changeConditionTask }) => {
       />
     );
   }
+
+  // const isChecked = (done) => {
+  //   return done ? 'checked' : ''
+  // }
+
+  // return (
+  //   <input
+  //     type="checkbox"
+  //     onChange={() => changeConditionTask(task.id, isDone)}
+  //     {isChecked(isDone)}
+  //   />
+  // );
+
 };
 
 export default Checkbox;

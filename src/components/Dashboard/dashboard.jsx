@@ -1,17 +1,18 @@
 import List from "./list"
 import './dashboard.css'
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
+import TaskTypeToogle from "./task-type-toogle";
 
 const NavBar = ({ lists, toogleTaskType, isOnlyUncompletedTasks }) => {
 
-    const taskTypeToogle = () => {
-        const isDone = !isOnlyUncompletedTasks;
-        toogleTaskType(isDone)
-    }
+
+    let pathname = useLocation().pathname.split('/');
+    const findIndex = pathname.indexOf('lists');
+    let listId = pathname.slice(findIndex + 1, findIndex + 2).join()
 
     return (
         <div className="sidebar">
-            <button onClick={() => taskTypeToogle()}>Click me tenderly</button>
+            <TaskTypeToogle toogleTaskType={toogleTaskType} listId={listId} isOnlyUncompletedTasks={isOnlyUncompletedTasks}/>
             <NavLink className="link" to='/today'>Today</NavLink>
             <List lists={lists} />
         </div>

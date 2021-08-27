@@ -16,9 +16,10 @@ function App() {
     changeTasks(newTaskList);
   };
 
-  const changeConditionTask = (id, done) => {
+  const changeConditionTask = (id, done, parentId) => {
+
     const newTaskList = taskList.slice();
-    newTaskList[id - 1].done = !done;
+    newTaskList[newTaskList.findIndex(t => t.id == id)].done = !done;
     changeTasks(newTaskList);
   };
 
@@ -34,8 +35,6 @@ function App() {
   ];
 
   const [isOnlyUncompletedTasks, toogleTaskType] = useState(false);
-
-
 
   return (
     <>
