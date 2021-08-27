@@ -19,7 +19,7 @@ const checkDate = (date, done) => {
 }
 
 const getListTitle = (id, lists) => {
-  const currentList = lists.find(l => l.id == id);
+  const currentList = lists.find(l => l.id === parseInt(id));
   return currentList.title;
 }
 

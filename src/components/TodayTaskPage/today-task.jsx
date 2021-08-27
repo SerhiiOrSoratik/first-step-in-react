@@ -9,13 +9,12 @@ const selectTodayTask = (tasks) => {
 
 const TodayTask = ({ tasks, deleteTask, changeConditionTask, lists }) => {
   tasks = selectTodayTask(tasks);
-  tasks = tasks.filter((t => t.done == false));
+  tasks = tasks.filter((t => t.done === false));
 
   return (
     <div>
       <h1 className="caption">Today</h1>
       <div className="todo-list">
-
         <div>
           <Task tasks={tasks} deleteTask={deleteTask} changeConditionTask={changeConditionTask} lists={lists} />
         </div>

@@ -3,9 +3,9 @@ import { useParams } from "react-router-dom";
 
 const Todo = ({ tasks, deleteTask, changeConditionTask, lists, isOnlyUncompletedTasks }) => {
   const listId = useParams().id;
-  tasks = tasks.filter((t => t.listId == listId))
+  tasks = tasks.filter((t => t.listId === listId))
   if (isOnlyUncompletedTasks) {
-    tasks = tasks.filter((t => t.done == false));
+    tasks = tasks.filter((t => t.done === false));
   }
 
   return (

@@ -18,7 +18,7 @@ function App() {
 
   const changeConditionTask = (id, done) => {
     const newTaskList = taskList.slice();
-    newTaskList[newTaskList.findIndex(t => t.id == id)].done = !done;
+    newTaskList[newTaskList.findIndex(t => t.id === id)].done = !done;
     changeTasks(newTaskList);
   };
 
