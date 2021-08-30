@@ -18,7 +18,7 @@ const TaskForm = ({ lists }) => {
     }
     if (data.title) {
       dispatch(addTask(data))
-      dispatch(addNewTask(data.listId))
+      dispatch(addNewTask(data.listId, data.due_date))
       form.reset();
     }
   };

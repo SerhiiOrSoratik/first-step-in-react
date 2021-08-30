@@ -10,13 +10,11 @@ import { useSelector } from "react-redux";
 
 
 function App() {
-  const [taskList, changeTasks] = useState([]);
   const [isOnlyUncompletedTasks, toogleTaskType] = useState(false);
 
   const tasks = useSelector(state => state.tasks)
   const lists = useSelector(state => state.lists)
-  const todayTask = useSelector(state => state.dashboard)
-  console.log(todayTask)
+
   return (
     <>
       <BrowserRouter>
@@ -24,7 +22,7 @@ function App() {
           <div className="todo">
             <Header />
             <div className="main-content">
-              <Dashboard lists={lists} todayTask={todayTask} toogleTaskType={toogleTaskType} isOnlyUncompletedTasks={isOnlyUncompletedTasks} />
+              <Dashboard lists={lists} toogleTaskType={toogleTaskType} isOnlyUncompletedTasks={isOnlyUncompletedTasks} />
               <Route path='/' exact>
                 <Redirect to={{ pathname: '/today' }}></Redirect>
               </Route>
@@ -38,9 +36,10 @@ function App() {
               <Route path='/today' exact>
                 <TodayTask
                   tasks={tasks}
-                  lists={lists} />
+                  lists={lists}
+                />
               </Route>
-              <TaskForm changeTasks={changeTasks} lists={lists} taskList={taskList} />
+              <TaskForm lists={lists} taskList={tasks} />
             </div>
           </div>
         </div>

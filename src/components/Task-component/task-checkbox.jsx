@@ -9,7 +9,7 @@ const Checkbox = ({ task }) => {
       type="checkbox"
       onChange={() => {
         dispatch(changeConditionTask(task.id, task.done))
-        dispatch(taskStatusUpdated(task.id, task.listId, task.done))
+        dispatch(taskStatusUpdated(task.id, task.listId, task.done, task.due_date))
       }
       }
       checked={task.done}
