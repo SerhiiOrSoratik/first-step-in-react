@@ -17,8 +17,9 @@ function App() {
   const lists = useSelector(state => state.lists)
 
 
-  const dispatch = useDispatch()
-    dispatch(loadDashboard(dispatch))
+  const dispatch = useDispatch();
+
+  dispatch(loadDashboard);
   
 
   // const getTasks = () => {
