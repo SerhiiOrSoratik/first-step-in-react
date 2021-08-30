@@ -23,6 +23,11 @@ export const reducer = (state = {}, action) => {
       }
       return state;
 
+      case "dashboard/loaded":
+          console.log(action.data)
+          return action.data;
+
+
     default:
       return state;
   }

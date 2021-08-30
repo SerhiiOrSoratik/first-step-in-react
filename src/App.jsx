@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import Header from "./components/header";
 import TaskForm from "./components/Form-component/task-form";
@@ -6,7 +6,8 @@ import Todo from "./components/TodoListPage/todo-list-page";
 import Dashboard from "./components/Dashboard/dashboard";
 import TodayTask from "./components/TodayTaskPage/today-task";
 import { BrowserRouter, Route, Redirect } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { loadDashboard } from "./action/service/db-query";
 
 
 function App() {
@@ -14,6 +15,24 @@ function App() {
 
   const tasks = useSelector(state => state.tasks)
   const lists = useSelector(state => state.lists)
+
+
+  const dispatch = useDispatch()
+    dispatch(loadDashboard(dispatch))
+  
+
+  // const getTasks = () => {
+  //   return fetch(`http://localhost:3000/tasks`, {
+  //     method: "GET",
+      // headers: {
+      //   "Content-Type": "application/json",
+      // },
+  //   }).then((response) => response.json());
+  // };
+
+  // getTasks().then((data) => {
+  //   console.log(data)
+  // })
 
   return (
     <>
