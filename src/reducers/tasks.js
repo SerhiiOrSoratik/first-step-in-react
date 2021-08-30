@@ -12,6 +12,7 @@ const createTask = (data) => {
   };
 
 export const reducer = (state = [], action) => {
+    
     let newState;
     switch (action.type) {
         case 'ADD_TASK':
@@ -20,7 +21,7 @@ export const reducer = (state = [], action) => {
         case 'DELETE_TASK':
             newState = state.filter(t => t.id !== action.id);
             return newState;
-        case 'CHANGE_CONDITION_TASK':
+        case 'TASK_STATUS_UPDATED':
             newState = state.slice();
             newState[newState.findIndex(t => t.id === action.id)].done = !action.done;
             return newState;

@@ -10,3 +10,11 @@ export const deleteTask = (id) => {
 export const changeConditionTask = (id, done) => {
   return { type: "CHANGE_CONDITION_TASK", id, done};
 }
+
+export const taskStatusUpdated = (id, listId, done) => {
+    return {type: "TASK_STATUS_UPDATED", id, listId, done}
+}
+
+export const addNewTask = (listId) => {
+    return {type: "ADD_NEW_TASK", listId}
+} 

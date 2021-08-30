@@ -1,5 +1,5 @@
 const FormSelect = ({lists, listId}) => {
-    if (!listId.listId) {
+    if (!listId) {
         return (
             <select name="listId"
             className="form-input">
