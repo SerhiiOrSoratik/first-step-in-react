@@ -6,6 +6,7 @@ import Todo from "./components/TodoListPage/todo-list-page";
 import Dashboard from "./components/Dashboard/dashboard";
 import TodayTask from "./components/TodayTaskPage/today-task";
 import { BrowserRouter, Route, Redirect } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 
 function App() {
@@ -22,19 +23,11 @@ function App() {
     changeTasks(newTaskList);
   };
 
-  const lists = [
-    {
-      id: 1,
-      title: "list1",
-    },
-    {
-      id: 2,
-      title: "list2",
-    },
-  ];
-
   const [isOnlyUncompletedTasks, toogleTaskType] = useState(false);
 
+  const tasks = useSelector(state => state.tasks)
+  const lists = useSelector(state => state.lists)
+  
   return (
     <>
       <BrowserRouter>
@@ -48,7 +41,7 @@ function App() {
               </Route>
               <Route path='/lists/:id' exact>
                 <Todo
-                  tasks={taskList}
+                  tasks={tasks}
                   deleteTask={deleteTask}
                   changeConditionTask={changeConditionTask}
                   lists={lists}
@@ -57,7 +50,7 @@ function App() {
               </Route>
               <Route path='/today' exact>
                 <TodayTask
-                  tasks={taskList}
+                  tasks={tasks}
                   deleteTask={deleteTask}
                   changeConditionTask={changeConditionTask}
                   lists={lists} />

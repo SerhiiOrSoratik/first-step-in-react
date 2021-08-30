@@ -1,8 +1,9 @@
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import './dashboard.css'
 
-const DashboardList = (props) => {
-    const { lists } = props;
+const DashboardList = () => {
+    const lists = useSelector(state => state.lists)
     return (
         lists.map((list) => {
             const url = `/lists/${list.id}`
@@ -11,8 +12,8 @@ const DashboardList = (props) => {
                     <NavLink to={url}>{list.title}</NavLink>
                 </div>
             )
-
         })
+ 
     )
 
 }

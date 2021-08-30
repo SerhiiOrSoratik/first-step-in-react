@@ -1,10 +1,11 @@
-
 import { useLocation } from "react-router-dom";
 import FormSelect from "./form-select";
 import "./task-form.css";
+import {useDispatch, useSelector} from 'react-redux'
+import {addTask} from '../../action'
+
 
 let idCount = 1;
-
 const createTask = (data) => {
   return {
     id: idCount++,
@@ -22,6 +23,7 @@ const addNewTask = (task, taskList, changeTasks) => {
 };
 
 const TaskForm = ({ lists, changeTasks, taskList }) => {
+const dispatch = useDispatch()
   const onSubmitHandler = (event) => {
     const form = document.getElementById('task_form')
     event.preventDefault();
@@ -31,6 +33,9 @@ const TaskForm = ({ lists, changeTasks, taskList }) => {
       data.listId = listId;
     }
     if (data.title) {
+
+      dispatch(addTask(data))
+      
       addNewTask(data, taskList, changeTasks);
       form.reset();
     }
