@@ -11,18 +11,9 @@ import { useSelector } from "react-redux";
 
 function App() {
   const [taskList, changeTasks] = useState([]);
-
-  // const changeConditionTask = (id, done) => {
-  //   const newTaskList = tasks.slice();
-  //   newTaskList[newTaskList.findIndex(t => t.id === id)].done = !done;
-  //   changeTasks(newTaskList);
-  // };
-
   const [isOnlyUncompletedTasks, toogleTaskType] = useState(false);
-
   const tasks = useSelector(state => state.tasks)
   const lists = useSelector(state => state.lists)
-  console.log(useSelector(t => t))
 
   return (
     <>

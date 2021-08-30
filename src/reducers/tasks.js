@@ -11,7 +11,7 @@ const createTask = (data) => {
     };
   };
 
-export const tasks = (state = [], action) => {
+export const reducer = (state = [], action) => {
     let newState;
     switch (action.type) {
         case 'ADD_TASK':

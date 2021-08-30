@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux';
 import { reducer as lists } from './lists';
-import { tasks } from './tasks'
+import { reducer as tasks } from './tasks'
 
 
 const allReducers = combineReducers({

@@ -9,6 +9,6 @@ const lists = [
         },
       ];
 
-export const reducer = (state = lists, activities) => {
+export const reducer = (state = lists, action) => {
   return state
 }

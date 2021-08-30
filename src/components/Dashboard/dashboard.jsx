@@ -14,7 +14,7 @@ const Dashboard = ({ lists, toogleTaskType, isOnlyUncompletedTasks }) => {
         <div className="sidebar">
             <TaskTypeToogle toogleTaskType={toogleTaskType} listId={listId} isOnlyUncompletedTasks={isOnlyUncompletedTasks}/>
             <NavLink className="link" to='/today'>Today</NavLink>
-            <DashboardList />
+            <DashboardList lists={lists}/>
         </div>
     )
 }

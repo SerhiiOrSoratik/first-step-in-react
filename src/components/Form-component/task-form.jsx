@@ -1,13 +1,13 @@
 import { useLocation } from "react-router-dom";
 import FormSelect from "./form-select";
 import "./task-form.css";
-import {useDispatch} from 'react-redux'
-import {addTask} from '../../action'
+import { useDispatch } from 'react-redux'
+import { addTask } from '../../action'
+import DateSelect from "./date-select";
 
 
-
-const TaskForm = ({ lists}) => {
-const dispatch = useDispatch()
+const TaskForm = ({ lists }) => {
+  const dispatch = useDispatch()
   const onSubmitHandler = (event) => {
     const form = document.getElementById('task_form')
     event.preventDefault();
@@ -37,19 +37,14 @@ const dispatch = useDispatch()
             placeholder="title"
             className="form-input"
           />
-          <input
-            type="date"
-            name="due_date"
-            placeholder="due_date"
-            className="form-input"
-          />
+          <DateSelect />
           <input
             type="text"
             name="description"
             placeholder="description"
             className="form-input"
           />
-          <FormSelect lists={lists} listId={listId}/>
+          <FormSelect lists={lists} listId={listId} />
 
         </div>
         <button type="submit">Add</button>
