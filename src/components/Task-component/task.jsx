@@ -1,6 +1,8 @@
 import { NavLink, useParams } from "react-router-dom";
 import Checkbox from "./task-checkbox";
 import "./task.css";
+import { deleteTask } from "../../action";
+import { useDispatch } from "react-redux";
 
 const checkDate = (date, done) => {
   if (date) {
@@ -23,8 +25,9 @@ const getListTitle = (id, lists) => {
   return currentList.title;
 }
 
-const Task = ({ tasks, deleteTask, changeConditionTask, lists }) => {
+const Task = ({ tasks, changeConditionTask, lists }) => {
   const listId = useParams().id
+  const dispatch = useDispatch()
   return tasks.map((task) => {
     const url = `/lists/${task.listId}`
     return (
@@ -35,7 +38,7 @@ const Task = ({ tasks, deleteTask, changeConditionTask, lists }) => {
             {task.id}. {task.title}
           </h3>
           <h3 className={checkDate(task.due_date, task.done)}> {task.due_date} </h3>
-          <p className={"deleteTaskButton"} onClick={() => deleteTask(task.id)}>✖</p>
+          <p className={"deleteTaskButton"} onClick={() => dispatch(deleteTask(task.id))}>✖</p>
         </div>
         <p className="description">{task.description}</p>
         {!listId ? <NavLink to={url}>{getListTitle(task.listId, lists)}</NavLink> : ''}

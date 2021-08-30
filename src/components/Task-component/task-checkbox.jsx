@@ -1,11 +1,14 @@
-const Checkbox = ({ task, changeConditionTask }) => {
-  const isDone = task.done;
+import { useDispatch } from "react-redux";
+import { changeConditionTask } from "../../action";
 
+
+const Checkbox = ({ task }) => {
+  const dispatch = useDispatch()
   return (
     <input
       type="checkbox"
-      onChange={() => changeConditionTask(task.id, isDone)}
-      checked={isDone}
+      onChange={() => dispatch(changeConditionTask(task.id, task.done))}
+      checked={task.done}
     />
   );
 };

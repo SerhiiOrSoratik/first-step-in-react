@@ -12,22 +12,18 @@ import { useSelector } from "react-redux";
 function App() {
   const [taskList, changeTasks] = useState([]);
 
-  const deleteTask = (id) => {
-    const newTaskList = taskList.filter((t) => t.id !== id);
-    changeTasks(newTaskList);
-  };
-
-  const changeConditionTask = (id, done) => {
-    const newTaskList = taskList.slice();
-    newTaskList[newTaskList.findIndex(t => t.id === id)].done = !done;
-    changeTasks(newTaskList);
-  };
+  // const changeConditionTask = (id, done) => {
+  //   const newTaskList = tasks.slice();
+  //   newTaskList[newTaskList.findIndex(t => t.id === id)].done = !done;
+  //   changeTasks(newTaskList);
+  // };
 
   const [isOnlyUncompletedTasks, toogleTaskType] = useState(false);
 
   const tasks = useSelector(state => state.tasks)
   const lists = useSelector(state => state.lists)
-  
+  console.log(useSelector(t => t))
+
   return (
     <>
       <BrowserRouter>
@@ -42,8 +38,6 @@ function App() {
               <Route path='/lists/:id' exact>
                 <Todo
                   tasks={tasks}
-                  deleteTask={deleteTask}
-                  changeConditionTask={changeConditionTask}
                   lists={lists}
                   isOnlyUncompletedTasks={isOnlyUncompletedTasks}
                 />
@@ -51,8 +45,6 @@ function App() {
               <Route path='/today' exact>
                 <TodayTask
                   tasks={tasks}
-                  deleteTask={deleteTask}
-                  changeConditionTask={changeConditionTask}
                   lists={lists} />
               </Route>
               <TaskForm changeTasks={changeTasks} lists={lists} taskList={taskList} />
