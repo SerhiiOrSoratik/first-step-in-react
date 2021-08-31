@@ -1,9 +1,17 @@
 import Task from "../Task-component/task";
 import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { loadTask } from "../../action/service/db-query";
+import { useEffect } from "react";
 
 const Todo = ({ tasks, lists, isOnlyUncompletedTasks }) => {
+  const dispatch = useDispatch()
   const listId = useParams().id;
-  tasks = tasks.filter((t => t.listId === listId))
+
+  useEffect(() => {
+    dispatch(loadTask(listId))
+    }, [dispatch, listId])
+
   if (isOnlyUncompletedTasks) {
     tasks = tasks.filter((t => t.done === false));
   }

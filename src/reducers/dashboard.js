@@ -22,12 +22,6 @@ export const reducer = (state = {}, action) => {
         state.today ? state.today++ : (state.today = 1);
       }
       return state;
-
-      case "dashboard/loaded":
-          console.log(action.data)
-          return action.data;
-
-
     default:
       return state;
   }

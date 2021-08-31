@@ -4,6 +4,7 @@ import "./task.css";
 import { deleteTask } from "../../action";
 import { useDispatch } from "react-redux";
 
+
 const checkDate = (date, done) => {
   if (date) {
     date = new Date(date);
@@ -20,16 +21,13 @@ const checkDate = (date, done) => {
   }
 }
 
-const getListTitle = (id, lists) => {
-  const currentList = lists.find(l => l.id === parseInt(id));
-  return currentList.title;
-}
-
-const Task = ({ tasks, changeConditionTask, lists }) => {
-  const listId = useParams().id
+const Task = ({ tasks, changeConditionTask }) => {
   const dispatch = useDispatch()
+  const listId = useParams().id;
+
   return tasks.map((task) => {
-    const url = `/lists/${task.listId}`
+
+    const url = `/lists/${task.todosListId}`
     return (
       <div id={task.id} className="task" key={`task${task.id}`}>
         <div className="info">
@@ -41,7 +39,7 @@ const Task = ({ tasks, changeConditionTask, lists }) => {
           <p className={"deleteTaskButton"} onClick={() => dispatch(deleteTask(task.id))}>✖</p>
         </div>
         <p className="description">{task.description}</p>
-        {!listId ? <NavLink to={url}>{getListTitle(task.listId, lists)}</NavLink> : ''}
+        {!listId ? <NavLink to={url}>{task.todos_list ? task.todos_list.title : ''}</NavLink> : ''}
       </div>
     );
   });

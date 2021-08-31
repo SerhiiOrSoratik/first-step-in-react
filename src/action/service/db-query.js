@@ -1,19 +1,29 @@
 export const loadDashboard = (dispatch) => {
-  fetch("http://localhost:3000/lists")
+  fetch("http://localhost:3001/lists")
     .then((res) => res.json())
     .then((dashboard) =>
       dispatch({
-        type: "dashboard/loaded",
+        type: "DASHBOARD/LOADED",
         data: dashboard,
       })
     );
 };
 
-// const getTasks = () => {
-//   return fetch(`http://localhost:3000/tasks`, {
-//     method: "GET",
-// headers: {
-//   "Content-Type": "application/json",
-// },
-//   }).then((response) => response.json());
-// };
+export const loadTask = listId => dispatch => {
+  return fetch(`http://localhost:3001/lists/${listId}/tasks?all=true`)
+    .then(res => res.json())
+    .then(tasks => dispatch({
+        type: 'TASK/LOADED',
+        listId,
+        tasks
+    }))
+};
+
+export const loadTodayTask = dispatch => {
+  return fetch(`http://localhost:3001/collection/today`)
+    .then(res => res.json())
+    .then(tasks => dispatch({
+        type: 'TASK/TODAY/LOADED',
+        tasks
+    }))
+};

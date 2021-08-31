@@ -7,7 +7,7 @@ import Dashboard from "./components/Dashboard/dashboard";
 import TodayTask from "./components/TodayTaskPage/today-task";
 import { BrowserRouter, Route, Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { loadDashboard } from "./action/service/db-query";
+import { loadDashboard, loadTask } from "./action/service/db-query";
 
 
 function App() {
@@ -19,7 +19,10 @@ function App() {
 
   const dispatch = useDispatch();
 
+  useEffect(() => {
   dispatch(loadDashboard);
+  }, [dispatch])
+  
   
 
   // const getTasks = () => {

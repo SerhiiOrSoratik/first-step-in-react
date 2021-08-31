@@ -10,5 +10,12 @@ const lists = [
       ];
 
 export const reducer = (state = lists, action) => {
-  return state
+  switch (action.type) {
+    case 'DASHBOARD/LOADED':
+    return action.data;
+    default:
+      return state
+  }
+
+  
 }

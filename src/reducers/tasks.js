@@ -25,6 +25,13 @@ export const reducer = (state = [], action) => {
             newState = state.slice();
             newState[newState.findIndex(t => t.id === action.id)].done = !action.done;
             return newState;
+
+        case 'TASK/LOADED':
+            return action.tasks;
+        
+        case 'TASK/TODAY/LOADED':
+            console.log('YES')
+            return action.tasks
         default: 
             return state;
     }

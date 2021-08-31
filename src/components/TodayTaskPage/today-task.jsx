@@ -1,3 +1,6 @@
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { loadTodayTask } from "../../action/service/db-query";
 import Task from "../Task-component/task";
 
 const selectTodayTask = (tasks) => {
@@ -8,8 +11,14 @@ const selectTodayTask = (tasks) => {
   return newTasks;
 }
 
-const TodayTask = ({ tasks, lists}) => {
-  tasks = selectTodayTask(tasks);
+const TodayTask =  ({ tasks, lists}) => {
+
+  // tasks = selectTodayTask(tasks);
+const dispatch = useDispatch()
+
+   useEffect(() => {
+    dispatch(loadTodayTask)
+    }, [dispatch])
 
   return (
     <div>
