@@ -1,7 +1,7 @@
 const FormSelect = ({lists, listId}) => {
     if (!listId) {
         return (
-            <select name="listId"
+            <select name="todosListId"
             className="form-input">
             {
               lists.map(l => {

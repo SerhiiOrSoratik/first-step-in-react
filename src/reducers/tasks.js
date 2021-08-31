@@ -7,7 +7,7 @@ const createTask = (data) => {
       done: false,
       due_date: data.due_date || "",
       description: data.description || "",
-      listId: data.listId || "",
+      todosListId: data.todosListId || "",
     };
   };
 
@@ -30,8 +30,10 @@ export const reducer = (state = [], action) => {
             return action.tasks;
         
         case 'TASK/TODAY/LOADED':
-            console.log('YES')
             return action.tasks
+        
+        case 'CREATE_TASK':
+            return [...state, createTask(action.task)]
         default: 
             return state;
     }

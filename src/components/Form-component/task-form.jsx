@@ -4,6 +4,7 @@ import "./task-form.css";
 import { useDispatch } from 'react-redux'
 import { addNewTask, addTask } from '../../action'
 import DateSelect from "./date-select";
+import { createTask } from "../../action/service/db-query";
 
 
 const TaskForm = ({ lists }) => {
@@ -14,11 +15,11 @@ const TaskForm = ({ lists }) => {
     const newForm = new FormData(form);
     const data = Object.fromEntries(newForm.entries());
     if (listId) {
-      data.listId = listId;
+      data.todosListId = listId;
     }
     if (data.title) {
-      dispatch(addTask(data))
-      dispatch(addNewTask(data.listId, data.due_date))
+      dispatch(createTask(data))
+      dispatch(addNewTask(data.todosListId, data.due_date))
       form.reset();
     }
   };
