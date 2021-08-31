@@ -3,14 +3,6 @@ import { useDispatch } from "react-redux";
 import { loadTodayTask } from "../../action/service/db-query";
 import Task from "../Task-component/task";
 
-const selectTodayTask = (tasks) => {
-
-  const nowDay = new Date()
-  const endThisDay = new Date(nowDay.getFullYear(), nowDay.getMonth(), nowDay.getDate(), 23, 59, 59, 59);
-  const newTasks = tasks.filter(t => endThisDay.getTime() >= new Date(t.due_date).getTime() && t.done === false)
-  return newTasks;
-}
-
 const TodayTask =  ({ tasks, lists}) => {
 
   // tasks = selectTodayTask(tasks);

@@ -1,16 +1,17 @@
-const FormSelect = ({lists, listId}) => {
-    if (!listId) {
+const FormSelect = ({lists, todosListId}) => {
+    if (!todosListId) {
         return (
-            <select name="todosListId"
-            className="form-input">
-            {
-              lists.map(l => {
-                return (
-                  <option value={l.id} key={`listId${l.id}`}>{l.title}</option>
-                )
-              })
-            }
-          </select>
+          //   <select name="todosListId"
+          //   className="form-input">
+          //   {
+          //     lists.map(l => {
+          //       return (
+          //         <option value={l.id} key={`todosListId${l.id}`}>{l.title}</option>
+          //       )
+          //     })
+          //   }
+          // </select>
+          <div></div>
         )
     }
     else return ''

@@ -11,11 +11,11 @@ export const changeConditionTask = (id, done) => {
   return { type: "CHANGE_CONDITION_TASK", id, done};
 }
 
-export const taskStatusUpdated = (id, listId, done, due_date) => {
-    return {type: "TASK_STATUS_UPDATED", id, listId, done, due_date}
+export const taskStatusUpdated = (id, todosListId, done, due_date) => {
+    return {type: "TASK_STATUS_UPDATED", id, todosListId, done, due_date}
 }
 
-export const addNewTask = (listId, due_date) => {
-    return {type: "ADD_NEW_TASK", listId, due_date}
+export const addNewTask = (todosListId, due_date) => {
+    return {type: "ADD_NEW_TASK", todosListId, due_date}
 } 
 

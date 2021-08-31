@@ -23,10 +23,11 @@ const checkDate = (date, done) => {
 
 const Task = ({ tasks, changeConditionTask }) => {
   const dispatch = useDispatch()
-  const listId = useParams().id;
+  const todosListId = useParams().id;
+  const options = { year: "numeric", month: "numeric", day: "numeric" };
 
   return tasks.map((task) => {
-
+    // 
     const url = `/lists/${task.todosListId}`
     return (
       <div id={task.id} className="task" key={`task${task.id}`}>
@@ -35,11 +36,11 @@ const Task = ({ tasks, changeConditionTask }) => {
           <h3 className={task.done ? "doneTitle" : ""}>
             {task.id}. {task.title}
           </h3>
-          <h3 className={checkDate(task.due_date, task.done)}> {task.due_date} </h3>
+          <h3 className={checkDate(task.due_date, task.done)}> {new Date(task.due_date).toLocaleDateString("en-US", options)} </h3>
           <p className={"deleteTaskButton"} onClick={() => dispatch(deleteTask(task.id))}>✖</p>
         </div>
         <p className="description">{task.description}</p>
-        {!listId ? <NavLink to={url}>{task.todos_list ? task.todos_list.title : ''}</NavLink> : ''}
+        {!todosListId ? <NavLink to={url}>{task.todos_list ? task.todos_list.title : ''}</NavLink> : ''}
       </div>
     );
   });

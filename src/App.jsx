@@ -7,36 +7,27 @@ import Dashboard from "./components/Dashboard/dashboard";
 import TodayTask from "./components/TodayTaskPage/today-task";
 import { BrowserRouter, Route, Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { loadDashboard, loadTask } from "./action/service/db-query";
+import { loadDashboardCount, loadTask } from "./action/service/db-query";
 
 
 function App() {
   const [isOnlyUncompletedTasks, toogleTaskType] = useState(false);
-
-  const tasks = useSelector(state => state.tasks)
-  const lists = useSelector(state => state.lists)
-
-
   const dispatch = useDispatch();
 
   useEffect(() => {
-  dispatch(loadDashboard);
-  }, [dispatch])
-  
-  
+  dispatch(loadDashboardCount);
+    }, [dispatch])
 
-  // const getTasks = () => {
-  //   return fetch(`http://localhost:3000/tasks`, {
-  //     method: "GET",
-      // headers: {
-      //   "Content-Type": "application/json",
-      // },
-  //   }).then((response) => response.json());
-  // };
+    
+  const tasks = useSelector(state => state.tasks)
+  const lists = useSelector(state => state.dashboard.today)
 
-  // getTasks().then((data) => {
-  //   console.log(data)
-  // })
+  // console.log(useSelector(state => state))
+
+   
+  //   console.log(lists)
+
+  
 
   return (
     <>
@@ -45,24 +36,26 @@ function App() {
           <div className="todo">
             <Header />
             <div className="main-content">
-              <Dashboard lists={lists} toogleTaskType={toogleTaskType} isOnlyUncompletedTasks={isOnlyUncompletedTasks} />
+              <Dashboard toogleTaskType={toogleTaskType} isOnlyUncompletedTasks={isOnlyUncompletedTasks} />
               <Route path='/' exact>
                 <Redirect to={{ pathname: '/today' }}></Redirect>
               </Route>
               <Route path='/lists/:id' exact>
                 <Todo
+                lists={lists}
                   tasks={tasks}
-                  lists={lists}
                   isOnlyUncompletedTasks={isOnlyUncompletedTasks}
                 />
               </Route>
               <Route path='/today' exact>
                 <TodayTask
+                lists={lists}
                   tasks={tasks}
-                  lists={lists}
                 />
               </Route>
-              <TaskForm lists={lists} taskList={tasks} />
+              <TaskForm 
+              lists={lists}
+              taskList={tasks} />
             </div>
           </div>
         </div>

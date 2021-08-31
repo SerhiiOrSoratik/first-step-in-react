@@ -1,13 +1,14 @@
 import Task from "../Task-component/task";
 import { useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { loadTask } from "../../action/service/db-query";
 import { useEffect } from "react";
 
-const Todo = ({ tasks, lists, isOnlyUncompletedTasks }) => {
-  const dispatch = useDispatch()
+const Todo = ({lists, tasks, isOnlyUncompletedTasks }) => {
+  // const lists = useSelector(state => state.lists)
+  // console.log(lists)
   const listId = useParams().id;
-
+  const dispatch = useDispatch()
   useEffect(() => {
     dispatch(loadTask(listId))
     }, [dispatch, listId])
@@ -15,7 +16,6 @@ const Todo = ({ tasks, lists, isOnlyUncompletedTasks }) => {
   if (isOnlyUncompletedTasks) {
     tasks = tasks.filter((t => t.done === false));
   }
-
   return (
     <div className="todo-list-page">
       <h1 className="caption">{lists[listId - 1].title}</h1>

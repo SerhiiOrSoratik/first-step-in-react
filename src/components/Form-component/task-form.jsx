@@ -1,21 +1,23 @@
 import { useLocation } from "react-router-dom";
 import FormSelect from "./form-select";
 import "./task-form.css";
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { addNewTask, addTask } from '../../action'
 import DateSelect from "./date-select";
 import { createTask } from "../../action/service/db-query";
 
 
-const TaskForm = ({ lists }) => {
+const TaskForm = () => {
+  const lists = useSelector(state => state.lists)
+  
   const dispatch = useDispatch()
   const onSubmitHandler = (event) => {
     const form = document.getElementById('task_form')
     event.preventDefault();
     const newForm = new FormData(form);
     const data = Object.fromEntries(newForm.entries());
-    if (listId) {
-      data.todosListId = listId;
+    if (todosListId) {
+      data.todosListId = todosListId;
     }
     if (data.title) {
       dispatch(createTask(data))
@@ -26,7 +28,7 @@ const TaskForm = ({ lists }) => {
 
   let pathname = useLocation().pathname.split('/');
   const findIndex = pathname.indexOf('lists');
-  let listId = pathname.slice(findIndex + 1, findIndex + 2).join()
+  let todosListId = pathname.slice(findIndex + 1, findIndex + 2).join()
 
   return (
     <div className="form-component">
@@ -38,6 +40,7 @@ const TaskForm = ({ lists }) => {
             name="title"
             placeholder="title"
             className="form-input"
+            maxLength="30"
           />
           <DateSelect />
           <input
@@ -45,8 +48,9 @@ const TaskForm = ({ lists }) => {
             name="description"
             placeholder="description"
             className="form-input"
+            maxLength="50"
           />
-          <FormSelect lists={lists} listId={listId} />
+          <FormSelect lists={lists} todosListId={todosListId} />
 
         </div>
         <button type="submit">Add</button>
