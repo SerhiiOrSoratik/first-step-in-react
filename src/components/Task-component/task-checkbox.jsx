@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
-import { changeConditionTask, taskStatusUpdated } from "../../action";
+import { taskStatusUpdated } from "../../action";
+import { changeConditionTask } from "../../action/service/db-query";
 
 
 const Checkbox = ({ task }) => {
@@ -9,7 +10,7 @@ const Checkbox = ({ task }) => {
       type="checkbox"
       onChange={() => {
         dispatch(changeConditionTask(task.id, task.done))
-        dispatch(taskStatusUpdated(task.id, task.todosListId, task.done, task.due_date))
+        // dispatch(taskStatusUpdated(task.id, task.todosListId, task.done, task.due_date))
       }
       }
       checked={task.done}

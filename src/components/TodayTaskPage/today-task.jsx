@@ -10,7 +10,7 @@ const dispatch = useDispatch()
    useEffect(() => {
     dispatch(loadTodayTask)
     }, [dispatch])
-    if (lists != undefined) {
+    if (lists !== undefined) {
   return (
     <div>
       <h1 className="caption">Today</h1>

@@ -1,5 +1,5 @@
 const FormSelect = ({ lists, todosListId }) => {
-  if(!todosListId) {
+  if (!todosListId) {
     return (
       <select name="todosListId"
         className="form-input">
@@ -8,7 +8,7 @@ const FormSelect = ({ lists, todosListId }) => {
     )
   }
   else return (<></>)
- 
+
 }
 
 const FormOptions = ({ lists }) => {
@@ -17,7 +17,7 @@ const FormOptions = ({ lists }) => {
       <option value={l.id} key={`todosListId${l.id}`}>{l.title}</option>
     )
   })
-  return (<>{ listOptions }</>)
+  return (<>{listOptions}</>)
 }
 
 

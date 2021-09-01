@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import './dashboard.css'
 
 const DashboardList = ({lists}) => {
-    if (lists != undefined) {
+    if (lists !== undefined) {
         const newList = lists.map((list) => {
             const url = `/lists/${list.id}`
             return (

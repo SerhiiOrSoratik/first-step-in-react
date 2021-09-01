@@ -1,8 +1,8 @@
 import { useLocation } from "react-router-dom";
 import FormSelect from "./form-select";
 import "./task-form.css";
-import { useDispatch, useSelector } from 'react-redux'
-import { addNewTask } from '../../action'
+import { useDispatch } from 'react-redux'
+import { addNewTask,  } from '../../action'
 import DateSelect from "./date-select";
 import { createTask } from "../../action/service/db-query";
 

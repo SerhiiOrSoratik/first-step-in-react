@@ -15,7 +15,7 @@ const Todo = ({lists, tasks, isOnlyUncompletedTasks }) => {
   if (isOnlyUncompletedTasks) {
     tasks = tasks.filter((t => t.done === false));
   }
-  if (lists != undefined) {
+  if (lists !== undefined) {
   return (
     <div className="todo-list-page">
       <h1 className="caption">{lists[listId - 1].title}</h1>

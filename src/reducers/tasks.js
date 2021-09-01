@@ -19,10 +19,10 @@ export const reducer = (state = [], action) => {
       newState = state.filter((t) => t.id !== action.id);
       return newState;
     case "TASK_STATUS_UPDATED":
-      newState = state.slice();
-      newState[newState.findIndex((t) => t.id === action.id)].done =
-        !action.done;
-      return newState;
+      // newState = state.slice();
+      // newState[newState.findIndex((t) => t.id === action.id)].done =
+      //   !action.done;
+      // return newState;
 
     case "TASK/LOADED":
       return action.tasks;
@@ -33,7 +33,17 @@ export const reducer = (state = [], action) => {
     case "CREATE_TASK":
       const newTask1 = createTask(action.task);
       return [...state, newTask1];
-    default:
+    case "CHANGE_CONDITION_TASK":
+      console.log(action.answer.id)
+
+      newState = state.slice();
+      console.log(newState)
+      newState[newState.findIndex((t) => t.id == action.answer.id)].done =
+        action.answer.done;
+      return newState;
+      return state
+
+    default: 
       return state;
   }
 };
