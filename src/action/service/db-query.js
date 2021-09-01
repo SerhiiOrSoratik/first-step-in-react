@@ -1,3 +1,5 @@
+import { addNewTask, taskStatusUpdated } from "..";
+
 export const loadTask = (todosListId) => (dispatch) => {
   return fetch(`http://localhost:3001/lists/${todosListId}/tasks?all=true`)
     .then((res) => res.json())
@@ -41,15 +43,20 @@ export const createTask = (task) => (dispatch) => {
     body: JSON.stringify(task),
   })
     .then((res) => res.json())
-    .then((task) =>
-      dispatch({
-        type: "CREATE_TASK",
-        task,
-      })
+    .then(
+      (task) => {
+        dispatch({
+          type: "CREATE_TASK",
+          task,
+        });
+        console.log(task)
+      dispatch(addNewTask(task.todosListId, task.due_date))
+      }
+       
     );
 };
 
-export const changeConditionTask = (id, done) => (dispatch) => {
+export const changeConditionTask = (id, todosListId, done, due_date) => (dispatch) => {
   return fetch("http://localhost:3001/tasks/" + id, {
     method: "PATCH",
     headers: {
@@ -63,6 +70,7 @@ export const changeConditionTask = (id, done) => (dispatch) => {
         type: "CHANGE_CONDITION_TASK",
         answer,
       });
+      dispatch(taskStatusUpdated(id, todosListId, done, due_date))
     });
 };
 
@@ -73,7 +81,7 @@ export const deleteTask = (id, todosListId) => (dispatch) => {
     dispatch({
       type: "DELETE_TASK",
       id,
-      todosListId
+      todosListId,
     });
   });
 };

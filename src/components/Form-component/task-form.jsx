@@ -19,7 +19,7 @@ const TaskForm = ({ lists }) => {
     }
     if (data.title) {
       dispatch(createTask(data))
-      dispatch(addNewTask(data.todosListId, data.due_date))
+      // dispatch(addNewTask(data.todosListId, data.due_date))
       form.reset();
     }
   };

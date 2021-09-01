@@ -1,15 +1,21 @@
+const findListIndex = (state, todosListId) => {
+  return state.lists.findIndex((l) => l.id === todosListId);
+};
+
 export const reducer = (state = {}, action) => {
   let newState = {};
+  let listIndex;
   switch (action.type) {
     case "TASK_STATUS_UPDATED":
       newState = Object.assign(state);
+      listIndex = findListIndex(state, action.todosListId);
       if (action.done) {
-        newState.lists[action.todosListId - 1].count++;
+        newState.lists[listIndex].count++;
         if (isTodayTask(action.due_date)) {
           newState.today++;
         }
       } else {
-        newState.lists[action.todosListId - 1].count--;
+        newState.lists[listIndex].count--;
         if (isTodayTask(action.due_date)) {
           newState.today--;
         }
@@ -18,7 +24,8 @@ export const reducer = (state = {}, action) => {
 
     case "ADD_NEW_TASK":
       newState = Object.assign(state);
-      newState.lists[action.todosListId - 1].count++;
+      listIndex = findListIndex(state, +action.todosListId);
+      newState.lists[listIndex].count++;
 
       if (isTodayTask(action.due_date)) {
         newState.today ? newState.today++ : (newState.today = 1);
@@ -27,11 +34,13 @@ export const reducer = (state = {}, action) => {
 
     case "DELETE_TASK":
       newState = Object.assign(state);
-      newState.lists[action.todosListId - 1].count--;
+      listIndex = findListIndex(state, action.todosListId);
+      newState.lists[listIndex].count--;
       return newState;
 
     case "LOAD_DASHBOARD_COUNT":
       newState = Object.assign(action.data);
+      newState.lists.sort((a, b) => a.id > b.id ? 1 : -1);
       return newState;
 
     default:

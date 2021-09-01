@@ -18,7 +18,7 @@ const Todo = ({ lists, tasks, isOnlyUncompletedTasks }) => {
   if (lists !== undefined) {
     return (
       <div className="todo-list-page">
-        <h1 className="caption">{lists[listId - 1].title}</h1>
+        <h1 className="caption">{lists[lists.findIndex((l) => l.id === +listId)].title}</h1>
         <div className="todo-list">
           <Task tasks={tasks} lists={lists} />
         </div>

@@ -26,8 +26,9 @@ const Dashboard = ({ toogleTaskType, isOnlyUncompletedTasks, lists, dashboard })
 
 const UncompletedTask = ({ todosListId, location, dashboard, lists }) => {
     if (location !== '/today') {
+        const index = findListIndex(lists, todosListId)
         return (
-            <p>Uncompleted: {lists[todosListId - 1] ? lists[todosListId - 1].count : 0}</p>
+            <p>Uncompleted: {lists[index] ? lists[index].count : 0}</p>
         )
     }
     else if (location === '/today') {
@@ -35,7 +36,10 @@ const UncompletedTask = ({ todosListId, location, dashboard, lists }) => {
             <p>Uncompleted: {dashboard.today ? dashboard.today : 0}</p>
         )
     }
-
 }
+
+const findListIndex = (lists, todosListId) => {
+    return lists.findIndex((l) => l.id === +todosListId);
+  };
 
 export default Dashboard;
