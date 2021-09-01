@@ -2,7 +2,8 @@ const FormSelect = ({ lists, todosListId }) => {
   if (!todosListId) {
     return (
       <select name="todosListId"
-        className="form-input">
+        className="form-input"
+        >
         <FormOptions lists={lists} />
       </select>
     )

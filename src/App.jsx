@@ -15,13 +15,14 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-  dispatch(loadDashboardCount);
-    }, [dispatch])
+    dispatch(loadDashboardCount);
+  }, [dispatch])
 
-    
+
   const tasks = useSelector(state => state.tasks)
   const lists = useSelector(state => state.dashboard.lists)
   const dashboard = useSelector(state => state.dashboard)
+  console.log(useSelector(state => state))
   return (
     <>
       <BrowserRouter>
@@ -35,19 +36,19 @@ function App() {
               </Route>
               <Route path='/lists/:id' exact>
                 <Todo
-                lists={lists}
+                  lists={lists}
                   tasks={tasks}
                   isOnlyUncompletedTasks={isOnlyUncompletedTasks}
                 />
               </Route>
               <Route path='/today' exact>
                 <TodayTask
-                lists={lists}
+                  lists={lists}
                   tasks={tasks}
                 />
               </Route>
-              <TaskForm 
-              lists={lists}
+              <TaskForm
+                lists={lists}
               />
             </div>
           </div>

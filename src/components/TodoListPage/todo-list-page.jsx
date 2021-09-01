@@ -17,7 +17,7 @@ const Todo = ({ lists, tasks, isOnlyUncompletedTasks }) => {
   }
   if (lists !== undefined) {
     return (
-      <div className="todo-list-page">
+      <div>
         <h1 className="caption">{lists[lists.findIndex((l) => l.id === +listId)].title}</h1>
         <div className="todo-list">
           <Task tasks={tasks} lists={lists} />
@@ -26,7 +26,7 @@ const Todo = ({ lists, tasks, isOnlyUncompletedTasks }) => {
     );
   }
   else {
-    return (<div><h2>Task not found</h2></div>)
+    return (<div><h2>oops...It looks like the server is dead...</h2></div>)
   }
 };
 

@@ -22,8 +22,8 @@ body {
 }
 
 .todo-list {
-  width: 80%;
   min-width: 500px;
+  padding: 0 25px 0 25px;
   display: flex;
   align-items: center;
   flex-direction: column;

@@ -23,7 +23,7 @@ const TodayTask = ({ tasks, lists }) => {
     );
   }
   else {
-    return (<div><h2>Task not found</h2></div>)
+    return (<div><h2>oops...It looks like the server is dead...</h2></div>)
   }
 };
 

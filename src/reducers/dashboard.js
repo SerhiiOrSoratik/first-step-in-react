@@ -6,10 +6,10 @@ export const reducer = (state = {}, action) => {
   let newState = {};
   let listIndex;
   switch (action.type) {
-    case "TASK_STATUS_UPDATED":
+    case "CHANGE_CONDITION_TASK":
       newState = Object.assign(state);
       listIndex = findListIndex(state, action.todosListId);
-      if (action.done) {
+      if (!action.done) {
         newState.lists[listIndex].count++;
         if (isTodayTask(action.due_date)) {
           newState.today++;

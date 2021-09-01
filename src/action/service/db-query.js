@@ -1,4 +1,4 @@
-import { addNewTask, taskStatusUpdated } from "..";
+import { addNewTask } from "..";
 
 export const loadTask = (todosListId) => (dispatch) => {
   return fetch(`http://localhost:3001/lists/${todosListId}/tasks?all=true`)
@@ -49,7 +49,6 @@ export const createTask = (task) => (dispatch) => {
           type: "CREATE_TASK",
           task,
         });
-        console.log(task)
       dispatch(addNewTask(task.todosListId, task.due_date))
       }
        
@@ -66,11 +65,8 @@ export const changeConditionTask = (id, todosListId, done, due_date) => (dispatc
   })
     .then((res) => res.json())
     .then((answer) => {
-      dispatch({
-        type: "CHANGE_CONDITION_TASK",
-        answer,
-      });
-      dispatch(taskStatusUpdated(id, todosListId, done, due_date))
+      console.log(answer)
+      dispatch({type: "CHANGE_CONDITION_TASK", id, todosListId, done: !done, due_date});
     });
 };
 

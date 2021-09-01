@@ -1,9 +1,10 @@
 .sidebar {
-  height: 100%;
+  height: auto;
   width: 20%;
-  padding: 10px;
+  padding: 10px 10px 0 10px;
   display: flex;
   flex-direction: column;
+  border: 1px solid black;
 }
 
 .link {

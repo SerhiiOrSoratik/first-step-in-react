@@ -2,7 +2,6 @@ import { useLocation } from "react-router-dom";
 import FormSelect from "./form-select";
 import "./task-form.css";
 import { useDispatch } from 'react-redux'
-import { addNewTask, } from '../../action'
 import DateSelect from "./date-select";
 import { createTask } from "../../action/service/db-query";
 
@@ -19,7 +18,6 @@ const TaskForm = ({ lists }) => {
     }
     if (data.title) {
       dispatch(createTask(data))
-      // dispatch(addNewTask(data.todosListId, data.due_date))
       form.reset();
     }
   };
@@ -56,7 +54,7 @@ const TaskForm = ({ lists }) => {
       </div>
     );
   }
-  else return (<h2>error</h2>)
+  else return (<></>)
 
 }
 
