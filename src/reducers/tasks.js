@@ -12,17 +12,9 @@ const createTask = (data) => {
 export const reducer = (state = [], action) => {
   let newState;
   switch (action.type) {
-    case "ADD_TASK":
-      const newTask = createTask(action.task);
-      return [...state, newTask];
     case "DELETE_TASK":
       newState = state.filter((t) => t.id !== action.id);
       return newState;
-    case "TASK_STATUS_UPDATED":
-      // newState = state.slice();
-      // newState[newState.findIndex((t) => t.id === action.id)].done =
-      //   !action.done;
-      // return newState;
 
     case "TASK/LOADED":
       return action.tasks;
@@ -33,17 +25,14 @@ export const reducer = (state = [], action) => {
     case "CREATE_TASK":
       const newTask1 = createTask(action.task);
       return [...state, newTask1];
-    case "CHANGE_CONDITION_TASK":
-      console.log(action.answer.id)
 
+    case "CHANGE_CONDITION_TASK":
       newState = state.slice();
-      console.log(newState)
-      newState[newState.findIndex((t) => t.id == action.answer.id)].done =
+      newState[newState.findIndex((t) => t.id === +action.answer.id)].done =
         action.answer.done;
       return newState;
-      return state
 
-    default: 
+    default:
       return state;
   }
 };

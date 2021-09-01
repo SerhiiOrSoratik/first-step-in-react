@@ -4,9 +4,7 @@ const DateSelect = () => {
     month < 10 ? month = '0' + month : month = month;
     let day = date.getDate();
     day < 10 ? day = '0' + day : day = day;
-    console.log(day)
     const nowDate = date.getFullYear() + '-' + month + '-' + day
-    console.log(nowDate)
     return (
         <input
             type="date"

@@ -21,18 +21,18 @@ const Dashboard = ({ toogleTaskType, isOnlyUncompletedTasks, lists, dashboard })
         )
     }
     else return (<></>)
-    
+
 }
 
 const UncompletedTask = ({ todosListId, location, dashboard, lists }) => {
     if (location !== '/today') {
         return (
-            <p>Uncompleted task: {lists[todosListId - 1] ? lists[todosListId - 1].count : 0}</p>
+            <p>Uncompleted: {lists[todosListId - 1] ? lists[todosListId - 1].count : 0}</p>
         )
     }
     else if (location === '/today') {
         return (
-            <p>Uncompleted task: {dashboard.today ? dashboard.today : 0}</p>
+            <p>Uncompleted: {dashboard.today ? dashboard.today : 0}</p>
         )
     }
 

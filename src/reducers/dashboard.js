@@ -4,12 +4,12 @@ export const reducer = (state = {}, action) => {
     case "TASK_STATUS_UPDATED":
       newState = Object.assign(state);
       if (action.done) {
-        newState[action.todosListId]++;
+        newState.lists[action.todosListId - 1].count++;
         if (isTodayTask(action.due_date)) {
           newState.today++;
         }
       } else {
-        newState[action.todosListId]--;
+        newState.lists[action.todosListId - 1].count--;
         if (isTodayTask(action.due_date)) {
           newState.today--;
         }
@@ -18,12 +18,16 @@ export const reducer = (state = {}, action) => {
 
     case "ADD_NEW_TASK":
       newState = Object.assign(state);
-      newState[action.todosListId]
-        ? newState[action.todosListId]++
-        : (newState[action.todosListId] = 1);
+      newState.lists[action.todosListId - 1].count++;
+
       if (isTodayTask(action.due_date)) {
         newState.today ? newState.today++ : (newState.today = 1);
       }
+      return newState;
+
+    case "DELETE_TASK":
+      newState = Object.assign(state);
+      newState.lists[action.todosListId - 1].count--;
       return newState;
 
     case "LOAD_DASHBOARD_COUNT":

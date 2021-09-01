@@ -3,28 +3,28 @@ import { useDispatch } from "react-redux";
 import { loadTodayTask } from "../../action/service/db-query";
 import Task from "../Task-component/task";
 
-const TodayTask =  ({ tasks, lists}) => {
+const TodayTask = ({ tasks, lists }) => {
 
-const dispatch = useDispatch()
+  const dispatch = useDispatch()
 
-   useEffect(() => {
+  useEffect(() => {
     dispatch(loadTodayTask)
-    }, [dispatch])
-    if (lists !== undefined) {
-  return (
-    <div>
-      <h1 className="caption">Today</h1>
-      <div className="todo-list">
-        <div>
-          <Task tasks={tasks} lists={lists} />
+  }, [dispatch])
+  if (lists !== undefined) {
+    return (
+      <div>
+        <h1 className="caption">Today</h1>
+        <div className="todo-list">
+          <div>
+            <Task tasks={tasks} lists={lists} />
+          </div>
         </div>
       </div>
-    </div>
-  );
-    }
-    else {
-      return (<div><h2>Task not found</h2></div>)
-    }
+    );
+  }
+  else {
+    return (<div><h2>Task not found</h2></div>)
+  }
 };
 
 export default TodayTask;

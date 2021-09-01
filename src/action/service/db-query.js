@@ -1,4 +1,3 @@
-
 export const loadTask = (todosListId) => (dispatch) => {
   return fetch(`http://localhost:3001/lists/${todosListId}/tasks?all=true`)
     .then((res) => res.json())
@@ -51,18 +50,30 @@ export const createTask = (task) => (dispatch) => {
 };
 
 export const changeConditionTask = (id, done) => (dispatch) => {
-  console.log(id)
   return fetch("http://localhost:3001/tasks/" + id, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({done: !done}),
-  }).then((res) => res.json())
-  .then((answer) => {
+    body: JSON.stringify({ done: !done }),
+  })
+    .then((res) => res.json())
+    .then((answer) => {
+      dispatch({
+        type: "CHANGE_CONDITION_TASK",
+        answer,
+      });
+    });
+};
+
+export const deleteTask = (id, todosListId) => (dispatch) => {
+  return fetch("http://localhost:3001/tasks/" + id, {
+    method: "DELETE",
+  }).then(() => {
     dispatch({
-      type: "CHANGE_CONDITION_TASK",
-      answer
-    })
+      type: "DELETE_TASK",
+      id,
+      todosListId
+    });
   });
-}
+};
