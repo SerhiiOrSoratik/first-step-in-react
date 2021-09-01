@@ -3,7 +3,6 @@ import './dashboard.css'
 
 const DashboardList = ({ dashboard }) => {
     if (dashboard !== undefined) {
-   console.log(dashboard)
         const newList = dashboard.lists.map((list) => {
             const url = `/lists/${list.id}`
             return (

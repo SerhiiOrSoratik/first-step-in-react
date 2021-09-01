@@ -10,25 +10,23 @@ const Dashboard = ({ toogleTaskType, isOnlyUncompletedTasks, lists, dashboard })
     const findIndex = pathname.indexOf('lists');
     let todosListId = pathname.slice(findIndex + 1, findIndex + 2).join()
 
-    if (dashboard !== undefined && lists !== undefined) {
+    if (dashboard.lists !== undefined && dashboard.openedTasks !== undefined) {
         return (
             <div className="sidebar">
-                <UncompletedTask todosListId={todosListId} dashboard={dashboard} lists={lists} location={location} />
+                <UncompletedTask todosListId={todosListId} dashboard={dashboard} location={location} />
                 <TaskTypeToogle toogleTaskType={toogleTaskType} todosListId={todosListId} isOnlyUncompletedTasks={isOnlyUncompletedTasks} />
                 <NavLink className="link" to='/today'>Today {dashboard.today ? dashboard.today : ''}</NavLink>
-                <DashboardList lists={lists} dashboard={dashboard} />
+                <DashboardList dashboard={dashboard} />
             </div>
         )
     }
     else return (<></>)
-
 }
 
-const UncompletedTask = ({ todosListId, location, dashboard, lists }) => {
+const UncompletedTask = ({ todosListId, location, dashboard }) => {
     if (location !== '/today') {
-        const index = findListIndex(lists, todosListId)
         return (
-            <p>Uncompleted: {lists[index] ? lists[index].count : 0}</p>
+            <p>Uncompleted: {dashboard.openedTasks[todosListId] ? dashboard.openedTasks[todosListId] : 0}</p>
         )
     }
     else if (location === '/today') {
@@ -37,9 +35,5 @@ const UncompletedTask = ({ todosListId, location, dashboard, lists }) => {
         )
     }
 }
-
-const findListIndex = (lists, todosListId) => {
-    return lists.findIndex((l) => l.id === +todosListId);
-  };
 
 export default Dashboard;

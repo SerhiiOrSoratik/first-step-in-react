@@ -22,7 +22,7 @@ function App() {
   const tasks = useSelector(state => state.tasks)
   const lists = useSelector(state => state.dashboard.lists)
   const dashboard = useSelector(state => state.dashboard)
-  console.log(useSelector(state => state))
+
   return (
     <>
       <BrowserRouter>
