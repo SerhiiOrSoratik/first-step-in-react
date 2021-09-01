@@ -32,7 +32,6 @@ export const reducer = (state = {}, action) => {
 
     case "LOAD_DASHBOARD_COUNT":
       newState = Object.assign(action.data);
-      console.log(newState);
       newState.lists.sort((a, b) => (a.id > b.id ? 1 : -1));
       return newState;
 

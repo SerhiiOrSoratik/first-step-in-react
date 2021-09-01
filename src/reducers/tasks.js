@@ -27,7 +27,6 @@ export const reducer = (state = [], action) => {
       return [...state, newTask1];
 
     case "CHANGE_CONDITION_TASK":
-      console.log(action)
       newState = state.slice();
       newState[newState.findIndex((t) => t.id === action.id)].done =
         action.done;

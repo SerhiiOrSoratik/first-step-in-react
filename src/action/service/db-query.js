@@ -60,7 +60,6 @@ export const changeConditionTask =
     })
       .then((res) => res.json())
       .then((answer) => {
-        console.log(answer);
         dispatch({
           type: "CHANGE_CONDITION_TASK",
           id,
