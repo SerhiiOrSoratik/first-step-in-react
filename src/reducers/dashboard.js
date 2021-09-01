@@ -1,48 +1,39 @@
 export const reducer = (state = {}, action) => {
+  let newState = {};
   switch (action.type) {
-
     case "TASK_STATUS_UPDATED":
+      newState = Object.assign(state);
       if (action.done) {
-        state[action.todosListId]++;
+        newState[action.todosListId]++;
         if (isTodayTask(action.due_date)) {
-          state.today++;
+          newState.today++;
         }
       } else {
-        state[action.todosListId]--;
+        newState[action.todosListId]--;
         if (isTodayTask(action.due_date)) {
-          state.today--;
+          newState.today--;
         }
       }
-      return state;
+      return newState;
 
     case "ADD_NEW_TASK":
-      state[action.todosListId]
-        ? state[action.todosListId]++
-        : (state[action.todosListId] = 1);
+      newState = Object.assign(state);
+      newState[action.todosListId]
+        ? newState[action.todosListId]++
+        : (newState[action.todosListId] = 1);
       if (isTodayTask(action.due_date)) {
-        state.today ? state.today++ : (state.today = 1);
+        newState.today ? newState.today++ : (newState.today = 1);
       }
-      return state;
+      return newState;
 
     case "LOAD_DASHBOARD_COUNT":
-   state = action.data;
-      console.log(state)
-      return state;
+      newState = Object.assign(action.data);
+      return newState;
 
     default:
       return state;
   }
 };
-
-const loadTaskCount = (tasks, todosListId, state) => {
-  state[todosListId] = 0;
-  tasks.map((t) => {
-    !t.done
-      ? state[todosListId]++
-      : (state[todosListId] = state[todosListId]);
-  });
-  return state;
-}
 
 const isTodayTask = (due_date) => {
   const nowDay = new Date();

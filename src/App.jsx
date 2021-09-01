@@ -7,7 +7,7 @@ import Dashboard from "./components/Dashboard/dashboard";
 import TodayTask from "./components/TodayTaskPage/today-task";
 import { BrowserRouter, Route, Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { loadDashboardCount, loadTask } from "./action/service/db-query";
+import { loadDashboardCount } from "./action/service/db-query";
 
 
 function App() {
@@ -20,14 +20,8 @@ function App() {
 
     
   const tasks = useSelector(state => state.tasks)
-  const lists = useSelector(state => state.dashboard.today)
-
-  // console.log(useSelector(state => state))
-
-   
-  //   console.log(lists)
-
-  
+  const lists = useSelector(state => state.dashboard.lists)
+  const dashboard = useSelector(state => state.dashboard)
 
   return (
     <>
@@ -36,7 +30,7 @@ function App() {
           <div className="todo">
             <Header />
             <div className="main-content">
-              <Dashboard toogleTaskType={toogleTaskType} isOnlyUncompletedTasks={isOnlyUncompletedTasks} />
+              <Dashboard toogleTaskType={toogleTaskType} dashboard={dashboard} lists={lists} isOnlyUncompletedTasks={isOnlyUncompletedTasks} />
               <Route path='/' exact>
                 <Redirect to={{ pathname: '/today' }}></Redirect>
               </Route>
@@ -55,7 +49,7 @@ function App() {
               </Route>
               <TaskForm 
               lists={lists}
-              taskList={tasks} />
+              />
             </div>
           </div>
         </div>

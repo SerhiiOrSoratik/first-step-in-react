@@ -2,8 +2,11 @@ const DateSelect = () => {
     const date = new Date();
     let month = date.getMonth() + 1;
     month < 10 ? month = '0' + month : month = month;
-
-    const nowDate = date.getFullYear() + '-' + month + '-' + date.getDate()
+    let day = date.getDate();
+    day < 10 ? day = '0' + day : day = day;
+    console.log(day)
+    const nowDate = date.getFullYear() + '-' + month + '-' + day
+    console.log(nowDate)
     return (
         <input
             type="date"

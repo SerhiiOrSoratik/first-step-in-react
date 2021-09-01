@@ -5,13 +5,12 @@ import Task from "../Task-component/task";
 
 const TodayTask =  ({ tasks, lists}) => {
 
-  // tasks = selectTodayTask(tasks);
 const dispatch = useDispatch()
 
    useEffect(() => {
     dispatch(loadTodayTask)
     }, [dispatch])
-
+    if (lists != undefined) {
   return (
     <div>
       <h1 className="caption">Today</h1>
@@ -22,6 +21,10 @@ const dispatch = useDispatch()
       </div>
     </div>
   );
+    }
+    else {
+      return (<div><h2>Task not found</h2></div>)
+    }
 };
 
 export default TodayTask;
