@@ -16,7 +16,7 @@ const Dashboard = ({ toogleTaskType, isOnlyUncompletedTasks, lists, dashboard })
                 <UncompletedTask todosListId={todosListId} dashboard={dashboard} lists={lists} location={location} />
                 <TaskTypeToogle toogleTaskType={toogleTaskType} todosListId={todosListId} isOnlyUncompletedTasks={isOnlyUncompletedTasks} />
                 <NavLink className="link" to='/today'>Today {dashboard.today ? dashboard.today : ''}</NavLink>
-                <DashboardList lists={lists} />
+                <DashboardList lists={lists} dashboard={dashboard} />
             </div>
         )
     }

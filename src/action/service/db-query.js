@@ -1,5 +1,3 @@
-import { addNewTask } from "..";
-
 export const loadTask = (todosListId) => (dispatch) => {
   return fetch(`http://localhost:3001/lists/${todosListId}/tasks?all=true`)
     .then((res) => res.json())
@@ -43,32 +41,35 @@ export const createTask = (task) => (dispatch) => {
     body: JSON.stringify(task),
   })
     .then((res) => res.json())
-    .then(
-      (task) => {
-        dispatch({
-          type: "CREATE_TASK",
-          task,
-        });
-      dispatch(addNewTask(task.todosListId, task.due_date))
-      }
-       
-    );
-};
-
-export const changeConditionTask = (id, todosListId, done, due_date) => (dispatch) => {
-  return fetch("http://localhost:3001/tasks/" + id, {
-    method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ done: !done }),
-  })
-    .then((res) => res.json())
-    .then((answer) => {
-      console.log(answer)
-      dispatch({type: "CHANGE_CONDITION_TASK", id, todosListId, done: !done, due_date});
+    .then((task) => {
+      dispatch({
+        type: "CREATE_TASK",
+        task,
+      });
     });
 };
+
+export const changeConditionTask =
+  (id, todosListId, done, due_date) => (dispatch) => {
+    return fetch("http://localhost:3001/tasks/" + id, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ done: !done }),
+    })
+      .then((res) => res.json())
+      .then((answer) => {
+        console.log(answer);
+        dispatch({
+          type: "CHANGE_CONDITION_TASK",
+          id,
+          todosListId,
+          done: !done,
+          due_date,
+        });
+      });
+  };
 
 export const deleteTask = (id, todosListId) => (dispatch) => {
   return fetch("http://localhost:3001/tasks/" + id, {
